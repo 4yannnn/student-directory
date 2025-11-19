@@ -1,0 +1,115 @@
+/* improved-styles.css
+   Clean, opinionated enhancement of your reset + root + layout styles.
+   Paste this as a separate file (or import it) to override the defaults.
+*/
+
+/* ----------------------
+   Reset / sensible defaults
+   ---------------------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body,#root{height:100%}
+
+/* ----------------------
+   Theme variables (easy to tweak)
+   ---------------------- */
+:root{
+  --bg: #eef1ff;
+  --card: #ffffff;
+  --muted: #6b6b83;
+  --accent: #5c63ff;
+  --accent-900: #3f45d9;
+  --green: #28a745;
+  --gray: #6c757d;
+
+  --text: #111827;
+  --max-width: 1100px;
+  --gap-xs: 8px;
+  --gap-sm: 12px;
+  --gap-md: 20px;
+  --radius: 12px;
+  --shadow-subtle: 0 4px 18px rgba(16,24,40,0.06);
+}
+
+/* ----------------------
+   Base typography & body
+   ---------------------- */
+body{
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.45;
+  font-size:16px; /* you can adjust or use responsive sizing */
+}
+
+/* Root layout wrapper used in your example */
+#root{
+  display:flex;
+  justify-content:center;
+  padding:clamp(18px, 4vw, 48px);
+  min-height:100vh; /* keeps footer at bottom when present */
+  box-sizing:border-box;
+}
+
+/* Optional container helper for centered content */
+.container{
+  width:100%;
+  max-width:var(--max-width);
+  margin-left:auto;
+  margin-right:auto;
+  padding:clamp(12px, 2vw, 28px);
+}
+
+/* ----------------------
+   Accessibility & interaction
+   ---------------------- */
+:focus{outline:3px solid color-mix(in srgb, var(--accent) 18%, transparent);outline-offset:3px}
+
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+button{font-family:inherit}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; animation:none !important}
+}
+
+/* ----------------------
+   Small utilities
+   ---------------------- */
+.center{display:flex;align-items:center;justify-content:center}
+.vstack{display:flex;flex-direction:column;gap:var(--gap-sm)}
+.hstack{display:flex;gap:var(--gap-sm);align-items:center}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-subtle);
+  border:1px solid rgba(16,24,40,0.03);
+  padding:16px;
+}
+
+/* ----------------------
+   Dark mode (optional override)
+   ---------------------- */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b0f1a;
+    --card: #0f1724;
+    --muted: #9aa0b4;
+    --text: #e6eef8;
+    --accent-900: #8b8fff;
+    --shadow-subtle: 0 6px 22px rgba(2,6,23,0.6);
+  }
+  body{background:var(--bg);color:var(--text)}
+}
+
+/* ----------------------
+   Small responsive tweaks
+   ---------------------- */
+@media (max-width:420px){
+  body{font-size:15px}
+  .container{padding:12px}
+}
+
